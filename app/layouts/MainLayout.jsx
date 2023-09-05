@@ -3,6 +3,7 @@
 import React from "react";
 import TopMenu from "./includes/TopMenu";
 import MainHeader from "./includes/MainHeader";
+import SubMenu from "./includes/SubMenu";
 
 function MainLayout({ children }) {
   return (
@@ -11,6 +12,7 @@ function MainLayout({ children }) {
         <div>
           <TopMenu />
           <MainHeader />
+          <SubMenu />
           <div>{children}</div>
         </div>
       </div>

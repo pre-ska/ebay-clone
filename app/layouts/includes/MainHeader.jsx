@@ -36,6 +36,14 @@ export default function MainHeader() {
                         type="text"
                       />
                     </div>
+
+                    <button className="flex items-center bg-blue-600 text-sm font-semibold text-white p-[11px] ml-2 px-14">
+                      Search
+                    </button>
+
+                    <div className="text-xs px-2 hover:text-blue-500 cursor-pointer">
+                      Advanced
+                    </div>
                   </div>
                 </div>
               </div>
