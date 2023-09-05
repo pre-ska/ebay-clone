@@ -4,26 +4,27 @@ import CarouselComp from "./components/CarouselComp";
 import Product from "./components/Product";
 import MainLayout from "./layouts/MainLayout";
 
-export default function Home() {
-  const products = [
-    {
-      id: 1,
-      title: "Brown letter bag",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, quisquam.",
-      url: "https://picsum.photos/id/7",
-      price: 2500,
-    },
-    {
-      id: 2,
-      title: "School books",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, quisquam.",
-      url: "https://picsum.photos/id/20",
+const products = [
+  {
+    id: 1,
+    title: "Brown letter bag",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, quisquam.",
+    url: "https://picsum.photos/id/7",
+    price: 2500,
+  },
+  {
+    id: 2,
+    title: "School books",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, quisquam.",
+    url: "https://picsum.photos/id/20",
 
-      price: 1990,
-    },
-  ];
+    price: 1990,
+  },
+];
+
+export default function Home() {
   return (
     <MainLayout>
       <CarouselComp />
