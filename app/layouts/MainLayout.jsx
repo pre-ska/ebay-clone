@@ -4,6 +4,7 @@ import React from "react";
 import TopMenu from "./includes/TopMenu";
 import MainHeader from "./includes/MainHeader";
 import SubMenu from "./includes/SubMenu";
+import Footer from "./includes/Footer";
 
 function MainLayout({ children }) {
   return (
@@ -13,7 +14,8 @@ function MainLayout({ children }) {
           <TopMenu />
           <MainHeader />
           <SubMenu />
-          <div>{children}</div>
+          {children}
+          <Footer />
         </div>
       </div>
     </>
