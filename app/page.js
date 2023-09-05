@@ -1,11 +1,12 @@
 "use client";
 
+import CarouselComp from "./components/CarouselComp";
 import MainLayout from "./layouts/MainLayout";
 
 export default function Home() {
   return (
     <MainLayout>
-      <h1>Home</h1>
+      <CarouselComp />
     </MainLayout>
   );
 }
