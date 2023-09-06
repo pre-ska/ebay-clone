@@ -1,32 +1,36 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import moment from "moment";
 import Link from "next/link";
 import { CiDeliveryTruck } from "react-icons/ci";
+
 import MainLayout from "../layouts/MainLayout";
-
-import moment from "moment";
-
-const orders = [
-  {
-    id: 1,
-    stripe_id: "123",
-    name: "name",
-    address: "address",
-    zipcode: "zipcode",
-    city: "city",
-    country: "country",
-    total: 1299,
-    orderItem: [
-      {
-        id: 1,
-        title: "Brown letter bag",
-        url: "https://picsum.photos/id/7",
-      },
-    ],
-  },
-];
+import { useUser } from "../context/user";
+import useIsLoading from "../hooks/useIsLoading";
 
 export default function Orders() {
+  const { user } = useUser();
+  const [orders, setOrders] = useState([]);
+
+  const getOrders = async () => {
+    try {
+      if (!user && !user?.id) return;
+      const response = await fetch("/api/orders");
+      const result = await response.json();
+      setOrders(result);
+      useIsLoading(false);
+    } catch (error) {
+      toast.error("Something went wrong?", { autoClose: 3000 });
+      useIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    useIsLoading(true);
+    getOrders();
+  }, [user]);
+
   return (
     <>
       <MainLayout>
@@ -39,7 +43,6 @@ export default function Orders() {
               <CiDeliveryTruck className="text-green-500" size={35} />
               <span className="pl-4">Orders</span>
             </div>
-
             {orders.length < 1 ? (
               <div className="flex items-center justify-center">
                 You have no order history
@@ -85,9 +88,9 @@ export default function Orders() {
                           <img
                             className="rounded"
                             width="120"
-                            src={item.url + "/120"}
+                            src={item.product.url + "/120"}
                           />
-                          {item.title}
+                          {item.product.title}
                         </Link>
                       </div>
                     ))}
