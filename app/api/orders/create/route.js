@@ -1,10 +1,9 @@
 import prisma from "@/app/libs/Prisma";
 import { NextResponse } from "next/server";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
+import { createServerSupabaseClient } from "../../utils";
 
 export async function POST(req) {
-  const supabase = createServerComponentClient({ cookies });
+  const supabase = createServerSupabaseClient();
 
   try {
     const {
