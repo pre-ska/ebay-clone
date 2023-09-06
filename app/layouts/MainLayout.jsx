@@ -11,7 +11,7 @@ function MainLayout({ children }) {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (window !== undefined) {
+    if (window !== "undefined") {
       window.addEventListener("storage", function () {
         let res = localStorage.getItem("isLoading");
         res === "false" ? setIsLoading(false) : setIsLoading(true);
