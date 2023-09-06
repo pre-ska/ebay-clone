@@ -61,7 +61,7 @@ export default function TopMenu() {
                     <img
                       width={50}
                       src={user?.picture}
-                      referrerpolicy="no-referrer"
+                      referrerPolicy="no-referrer"
                     />
                     <div className="font-bold text-[13px]">{user?.name}</div>
                   </div>
