@@ -1,6 +1,8 @@
 const useIsLoading = (bool) => {
-  localStorage.setItem("isLoading", bool);
-  window.dispatchEvent(new Event("storage"));
+  if (window !== undefined) {
+    localStorage.setItem("isLoading", bool);
+    window.dispatchEvent(new Event("storage"));
+  }
 };
 
 export default useIsLoading;
