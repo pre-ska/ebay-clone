@@ -6,9 +6,9 @@ import { ThemeSupa } from "@supabase/auth-ui-shared";
 import Link from "next/link";
 
 export default function AuthPage() {
-  const supabase = createClientComponentClient();
-
   if (window !== undefined) {
+    const supabase = createClientComponentClient();
+
     return (
       <>
         <div id="AuthPage" className="w-full min-h-screen bg-white">
