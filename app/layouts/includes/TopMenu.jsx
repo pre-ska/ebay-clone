@@ -2,13 +2,17 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { BsChevronDown } from "react-icons/bs";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { useUser } from "../../context/user";
-import { useRouter } from "next/router";
+
+import { useUser } from "@/app/context/user";
+import { useCart } from "@/app/context/cart";
 
 export default function TopMenu() {
+  const router = useRouter();
   const user = useUser();
+  const cart = useCart();
   const [isMenu, setIsMenu] = useState(false);
 
   const isLoggedIn = () => {
@@ -54,7 +58,11 @@ export default function TopMenu() {
               >
                 <div>
                   <div className="flex items-center justify-start gap-1 p-3">
-                    <img width={50} src={user?.picture} />
+                    <img
+                      width={50}
+                      src={user?.picture}
+                      referrerpolicy="no-referrer"
+                    />
                     <div className="font-bold text-[13px]">{user?.name}</div>
                   </div>
                 </div>
@@ -99,17 +107,17 @@ export default function TopMenu() {
 
             {/* // ! cart */}
             <li className="px-3 hover:underline cursor-pointer">
-              <div className="relative">
+              <div onClick={() => router.push("/cart")} className="relative">
                 <AiOutlineShoppingCart size={22} />
-
-                <div
-                  className="absolute text-[10px] -top-[2px] -right-[5px] 
-                  bg-red-500 w-[14px] h-[14px] rounded-full text-white"
-                >
-                  <div className=" flex items-center justify-center -mt-[1px]">
-                    3
+                {cart.cartCount() > 0 ? (
+                  <div className="absolute text-[10px] -top-[2px] -right-[5px] bg-red-500 w-[14px] h-[14px] rounded-full text-white">
+                    <div className=" flex items-center justify-center -mt-[1px]">
+                      {cart.cartCount()}
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  <div></div>
+                )}
               </div>
             </li>
           </ul>

@@ -5,6 +5,7 @@ import MainLayout from "../../layouts/MainLayout";
 
 import { toast } from "react-toastify";
 import SimilarProducts from "@/app/components/SimilarProducts";
+import { useCart } from "@/app/context/cart";
 
 const product = {
   id: 1,
@@ -16,9 +17,7 @@ const product = {
 };
 
 export default function Product({ params }) {
-  //   const cart = useCart();
-
-  //   const [product, setProduct] = useState({});
+  const cart = useCart();
 
   //   const getProduct = async () => {
   //     useIsLoading(true);
@@ -74,26 +73,25 @@ export default function Product({ params }) {
                     ) : null}
                   </div>
                   <button
-                    // onClick={() => {
-                    //   if (cart.isItemAdded) {
-                    //     cart.removeFromCart(product);
-                    //     toast.info("Removed from cart", { autoClose: 3000 });
-                    //   } else {
-                    //     cart.addToCart(product);
-                    //     toast.success("Added to cart", { autoClose: 3000 });
-                    //   }
-                    // }}
+                    onClick={() => {
+                      if (cart.isItemAdded) {
+                        cart.removeFromCart(product);
+                        toast.info("Removed from cart", { autoClose: 3000 });
+                      } else {
+                        cart.addToCart(product);
+                        toast.success("Added to cart", { autoClose: 3000 });
+                      }
+                    }}
                     className={`
                       text-white py-2 px-20 rounded-full cursor-pointer 
                       ${
-                        false
+                        cart.isItemAdded
                           ? "bg-[#e9a321] hover:bg-[#bf851a]"
                           : "bg-[#3498C9] hover:bg-[#0054A0]"
                       }
                     `}
                   >
-                    Add To Cart
-                    {/* {cart.isItemAdded ? "Remove From Cart" : "Add To Cart"} */}
+                    {cart.isItemAdded ? "Remove From Cart" : "Add To Cart"}
                   </button>
                 </div>
               </div>
