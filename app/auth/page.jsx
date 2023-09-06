@@ -7,15 +7,8 @@ import Link from "next/link";
 import { useEffect } from "react";
 
 export default function AuthPage() {
-  let supabase;
-
-  useEffect(() => {
-    supabase = createClientComponentClient();
-  }, []);
-
-  if (!supabase) {
-    return null;
-  }
+  const supabase =
+    window !== "undefined" ? createClientComponentClient() : null;
 
   return (
     <>
@@ -29,16 +22,17 @@ export default function AuthPage() {
         <div className="w-full flex items-center justify-center p-5 border-b-gray-300">
           Login / Register
         </div>
-
-        <div className="max-w-[400px] mx-auto px-2">
-          <Auth
-            onlyThirdPartyProviders
-            redirectTo={`${window.location.origin}/auth/callback`}
-            supabaseClient={supabase}
-            providers={["google"]}
-            appearance={{ theme: ThemeSupa }}
-          />
-        </div>
+        {!!supabase && (
+          <div className="max-w-[400px] mx-auto px-2">
+            <Auth
+              onlyThirdPartyProviders
+              redirectTo={`${window.location.origin}/auth/callback`}
+              supabaseClient={supabase}
+              providers={["google"]}
+              appearance={{ theme: ThemeSupa }}
+            />
+          </div>
+        )}
       </div>
     </>
   );
