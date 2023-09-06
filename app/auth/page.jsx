@@ -4,7 +4,9 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import Link from "next/link";
-import { useEffect } from "react";
+import dynamic from "next/dynamic";
+
+const Auth = dynamic(() => import("@supabase/auth-ui-react"), { ssr: false });
 
 export default function AuthPage() {
   const supabase =
